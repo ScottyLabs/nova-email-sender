@@ -10,3 +10,12 @@ wheels/
 .venv
 .env
 data/*
+
+# Secrets files
+mailgun-key.txt
+provisioning-key.txt
+teams.csv
+
+# Generated files
+key-hashes.txt
+team-keys.csv
