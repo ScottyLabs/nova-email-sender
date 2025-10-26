@@ -45,10 +45,10 @@ def generate_api_key(team_name: str, provisioning_key: str) -> str:
 def send_api_key_to_emails(key: str, team_name: str, emails: list[str], mailgun_key: str) -> None:
     email_contents = f"Hello {team_name},\n\nBelow is your OpenRouter API key for Nova.\n\n{key}\n\nWe're so excited to see what you'll do. Good luck!"
 
-    mail_domain = "sandbox466956565fcc40a8ac45c66988151339.mailgun.org"
+    mail_domain = "mail.scottylabs.org"
     url = f"https://api.mailgun.net/v3/{mail_domain}/messages"
     payload = {
-        "from": f"Nova API Key Distributor <postmaster@{mail_domain}>",
+        "from": f"Nova API Key Distributor <nova@{mail_domain}>",
         "to": emails,
         "subject": "Your OpenRouter API Key For Nova",
         "text": email_contents,
