@@ -10,6 +10,9 @@ def read_teams(file: str) -> dict[str, list[str]]:
         result: dict[str, list[str]] = {}
 
         for row in reader:
+            if row["Team"] == "" or row["Email"] == "":
+                continue
+
             if not row["Team"] in result:
                 result[row["Team"]] = []
             result[row["Team"]].append(row["Email"])
@@ -66,20 +69,25 @@ def send_api_key_to_emails(key: str, team_name: str, emails: list[str], mailgun_
     else:
         print(f"Email sent to {emails}", response, response.content)
 
-if __name__ == '__main__':
+def read_provisioning_key() -> str:
     try:
         with open('provisioning-key.txt', 'r') as file:
-            provisioning_key = file.read()
+            return file.read()
     except FileNotFoundError:
         print("No provisioning key found. Provide provisioning_key.txt file.")
         exit(1)
+
+def read_mailgun_key() -> str:
     try:
         with open('mailgun-key.txt', 'r') as file:
-            mailgun_key = file.read()
+            return file.read()
     except FileNotFoundError:
         print("No mailgun key found. Provide mailgun-key.txt file.")
+        exit(1)
 
-    teams = read_teams('teams.csv')
+def generate_and_send_key_to_teams(teams: dict[str, list[str]]):
+    provisioning_key = read_provisioning_key()
+    mailgun_key = read_mailgun_key()
 
     if not os.path.isfile('team-keys.csv'):
         print("Creating team-keys.csv file.")
@@ -91,5 +99,10 @@ if __name__ == '__main__':
     for team_name, emails in teams.items():
         key = generate_api_key(team_name, provisioning_key)
         send_api_key_to_emails(key, team_name, emails, mailgun_key)
+
+if __name__ == '__main__':
+    teams = read_teams('teams.csv')
+
+    generate_and_send_key_to_teams(teams)
 
     print("Done.")
