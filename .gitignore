@@ -11,6 +11,13 @@ wheels/
 .env
 data/*
 
+
+# PyCharm stuff
+# of very important note: this *must* be /*, otherwise you can't unignore nested parts
+/.idea/*
+!.idea/runConfigurations/
+!.idea/runConfigurations/*.xml
+
 # Secrets files
 .env
 teams.csv

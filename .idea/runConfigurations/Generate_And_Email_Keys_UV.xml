@@ -1,0 +1,21 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Generate And Email Keys" type="UvRunConfigurationType" factoryName="UvRunConfigurationType" folderName="Distribution">
+    <option name="args">
+      <list />
+    </option>
+    <option name="checkSync" value="true" />
+    <option name="env">
+      <map />
+    </option>
+    <option name="runType" value="SCRIPT" />
+    <option name="scriptOrModule" value="generate_and_email_keys.py" />
+    <option name="uvArgs">
+      <list>
+        <option value="--env-file" />
+        <option value=".env" />
+      </list>
+    </option>
+    <option name="uvSdkKey" value="" />
+    <method v="2" />
+  </configuration>
+</component>
