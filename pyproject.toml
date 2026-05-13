@@ -1,6 +1,6 @@
 [project]
 name = "nova-email-sender"
-version = "2025.0.0"
+version = "2026.0.0"
 description = "A simple tool for sending OpenRouter API keys to teams at the Nova Hackathon"
 readme = "README.md"
 requires-python = ">=3.13"

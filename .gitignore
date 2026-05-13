@@ -12,9 +12,11 @@ wheels/
 data/*
 
 # Secrets files
+.env
+teams.csv
+# legacy
 mailgun-key.txt
 provisioning-key.txt
-teams.csv
 
 # Generated files
 key-hashes.txt

@@ -70,20 +70,20 @@ def send_api_key_to_emails(key: str, team_name: str, emails: list[str], mailgun_
         print(f"Email sent to {emails}", response, response.content)
 
 def read_provisioning_key() -> str:
-    try:
-        with open('provisioning-key.txt', 'r') as file:
-            return file.read()
-    except FileNotFoundError:
-        print("No provisioning key found. Provide provisioning_key.txt file.")
+    key = os.getenv("OPENROUTER_PROVISIONING_KEY")
+    if not key:
+        print("No provisioning key found. Provide OPENROUTER_PROVISIONING_KEY environment variable.")
         exit(1)
+    else:
+        return key
 
 def read_mailgun_key() -> str:
-    try:
-        with open('mailgun-key.txt', 'r') as file:
-            return file.read()
-    except FileNotFoundError:
-        print("No mailgun key found. Provide mailgun-key.txt file.")
+    key = os.getenv("MAILGUN_KEY")
+    if not key:
+        print("No mailgun key found. Provide MAILGUN_KEY environment variable.")
         exit(1)
+    else:
+        return key
 
 def generate_and_send_key_to_teams(teams: dict[str, list[str]]):
     provisioning_key = read_provisioning_key()

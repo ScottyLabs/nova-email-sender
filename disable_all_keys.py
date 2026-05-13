@@ -1,3 +1,4 @@
+import os
 import requests
 
 def disable_hash(hash: str, enable_instead: bool, provisioning_key: str) -> None:
@@ -25,8 +26,10 @@ if __name__ == "__main__":
     else:
         enable_instead = False
 
-    with open('provisioning-key.txt') as f:
-        provisioning_key = f.read().strip()
+    provisioning_key = os.getenv("OPENROUTER_PROVISIONING_KEY")
+    if not provisioning_key:
+        print("No OpenRouter key found. Provide OPENROUTER_PROVISIONING_KEY environment variable.")
+        exit(1)
 
     with open('key-hashes.txt') as f:
         hashes = f.read().splitlines()

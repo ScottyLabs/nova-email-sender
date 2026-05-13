@@ -4,11 +4,10 @@ import os
 from generate_and_email_keys import read_teams, send_api_key_to_emails
 
 if __name__ == "__main__":
-    try:
-        with open('mailgun-key.txt', 'r') as file:
-            mailgun_key = file.read()
-    except FileNotFoundError:
-        print("No mailgun key found. Provide mailgun-key.txt file.")
+    mailgun_key = os.getenv("MAILGUN_KEY")
+    if not mailgun_key:
+        print("No mailgun key found. Provide MAILGUN_KEY environment variable.")
+        exit(1)
 
     teams = read_teams('teams.csv')
 
