@@ -1,11 +1,9 @@
 [project]
-name = "randomized-coffee-chats"
-version = "0.1.0"
-description = "Add your description here"
+name = "nova-email-sender"
+version = "2025.0.0"
+description = "A simple tool for sending OpenRouter API keys to teams at the Nova Hackathon"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "dotenv>=0.9.9",
-    "pydantic>=2.12.0",
     "requests>=2.32.5",
 ]
