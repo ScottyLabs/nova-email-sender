@@ -13,7 +13,7 @@ if __name__ == "__main__":
             print("Archiving cancelled")
             exit()
 
-    store_api_keys: bool = input("Archive and remove .env file? (not recommended) (y|N): ").lower() == "y"
+    store_api_keys: bool = input("Archive (and optionally remove) .env file? (not recommended) (y|N): ").lower() == "y"
 
     files_to_archive: list[str] = []
 
@@ -32,9 +32,9 @@ if __name__ == "__main__":
         for file in files_to_archive:
             zipf.write(file)
 
-    print("Archive done, moving old files to trash...")
-
-    for file in files_to_archive:
-        send2trash(file)
+    if input("Archive done, trash archived files? (y|N): ").lower() == "y":
+        print("Trashing archived files...")
+        for file in files_to_archive:
+            send2trash(file)
 
     print(f'Done! Archive created at "{archive_name}"')
