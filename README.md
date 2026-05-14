@@ -53,12 +53,12 @@ This is where you should provide an initial list of teams.
 It follows the `Email,Team` (and should have that header), where many Emails may share the same Team value to indicate teammates.
 
 This is used when generating emails to the teams,
-and will be appended to when running [`add_team.py`](#add_team_py) to reflect the new team you added.
+and will be appended to when running [`add_team.py`](#add_teampy) to reflect the new team you added.
 
 ### `key-hashes.txt`
 
 This generated file stores the hash (a representation OpenRouter uses to identify a created API key) of every key generated.
-It is used when disabling keys with [`disable_all_keys.py`](#disable_all_keys_py)
+It is used when disabling keys with [`disable_all_keys.py`](#disable_all_keyspy)
 
 ### `team-keys.csv`
 
@@ -81,13 +81,13 @@ It could probably stand to get functionality for sending to just one team, but f
 ### `add_team.py`
 
 This will add a new team. First enter the team name, then enter their emails (one per line, it will keep prompting until you enter an empty line).
-Then it will generate a key and send the team their new key, updating [`teams.csv`](#teams_csv) accordingly.
+Then it will generate a key and send the team their new key, updating [`teams.csv`](#teamscsv) accordingly.
 
 ### `disable_all_keys.py`
 
 This script can be used to disable or enable[^2] all the keys distributed.
 It will prompt you whether you want to enable instead when it first starts, and then march through its list of "all keys"
-(based on [`key-hashes.txt`](#key-hashes_txt), so don't delete that) and instruct OpenRouter to either turn off or turn on this API key.
+(based on [`key-hashes.txt`](#key-hashestxt), so don't delete that) and instruct OpenRouter to either turn off or turn on this API key.
 Super useful for after the event (wait until final demos are over, of course) so people don’t keep spending our money.
 
 [^2]: Frantic delirium is the only explanation I have for why this script is named "disable" but can do both.
@@ -101,7 +101,7 @@ The script can also optionally move the files it just archived to the trash[^3].
 
 [^3]: I stand by the decision to trash instead of hard delete and the extra dependency this requires.
     Humans are humans, and I may have deleted last year’s data several times over if not for trashing instead of deleting.
-    13733be62f3a106d37e1c9ede8892c901ebfecd9
+    <13733be62f3a106d37e1c9ede8892c901ebfecd9>
 
 ## License
 
