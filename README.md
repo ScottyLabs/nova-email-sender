@@ -101,7 +101,7 @@ The script can also optionally move the files it just archived to the trash[^3].
 
 [^3]: I stand by the decision to trash instead of hard delete and the extra dependency this requires.
     Humans are humans, and I may have deleted last year’s data several times over if not for trashing instead of deleting.
-    <13733be62f3a106d37e1c9ede8892c901ebfecd9>
+    See [13733be](https://github.com/ScottyLabs/nova-email-sender/commit/13733be62f3a106d37e1c9ede8892c901ebfecd9).
 
 ## License
 
