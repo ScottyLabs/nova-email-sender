@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from generate_and_email_keys import *
 
 if __name__ == "__main__":
@@ -12,7 +14,11 @@ if __name__ == "__main__":
 
     print("Adding to teams.csv")
 
+    create_new = not Path('teams.csv').is_file()
+
     with open('teams.csv', 'a') as teams_file:
+        if create_new:
+            teams_file.write("Team,Email\n")
         for email in emails:
             teams_file.write(f"{email},{team_name}\n")
 
