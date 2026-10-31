@@ -30,7 +30,7 @@ def generate_api_key(team_name: str, provisioning_key: str) -> str:
         },
         json={
             "name": f"Team {team_name}",
-            "limit": 30
+            "limit": 7,
         }
     )
     # print(response)
