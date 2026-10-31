@@ -19,7 +19,7 @@ data/*
 !.idea/runConfigurations/*.xml
 
 # Secrets files
-.env
+.env*
 teams.csv
 # legacy
 mailgun-key.txt
@@ -28,3 +28,4 @@ provisioning-key.txt
 # Generated files
 key-hashes.txt
 team-keys.csv
+*.zip
