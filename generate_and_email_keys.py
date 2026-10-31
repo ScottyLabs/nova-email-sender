@@ -20,7 +20,7 @@ def read_teams(file: str) -> dict[str, list[str]]:
         return result
 
 
-def generate_api_key(team_name: str, provisioning_key: str) -> str:
+def generate_api_key(team_name: str, provisioning_key: str, workspace_id: str) -> str:
     base_url = "https://openrouter.ai/api/v1/keys"
     response = requests.post(
         f"{base_url}",
@@ -31,6 +31,7 @@ def generate_api_key(team_name: str, provisioning_key: str) -> str:
         json={
             "name": f"Team {team_name}",
             "limit": 7,
+            "workspace_id": workspace_id
         }
     )
     # print(response)
@@ -85,7 +86,16 @@ def read_mailgun_key() -> str:
     else:
         return key
 
+def read_workspace_id() -> str:
+    id = os.getenv("OPENROUTER_WORKSPACE_ID")
+    if not id:
+        print("No workspace id found. Provide OPENROUTER_WORKSPACE_ID environment variable.")
+        exit(1)
+    else:
+        return id
+
 def generate_and_send_key_to_teams(teams: dict[str, list[str]]):
+    workspace_id = read_workspace_id()
     provisioning_key = read_provisioning_key()
     mailgun_key = read_mailgun_key()
 
@@ -97,7 +107,7 @@ def generate_and_send_key_to_teams(teams: dict[str, list[str]]):
         print("Team-keys.csv already exists. Appending to end.")
 
     for team_name, emails in teams.items():
-        key = generate_api_key(team_name, provisioning_key)
+        key = generate_api_key(team_name, provisioning_key, workspace_id)
         send_api_key_to_emails(key, team_name, emails, mailgun_key)
 
 if __name__ == '__main__':
