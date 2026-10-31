@@ -1,7 +1,9 @@
 import csv
 import os.path
+import sys
 
 import requests
+
 
 def read_teams(file: str) -> dict[str, list[str]]:
     with open(file) as f:
@@ -74,7 +76,7 @@ def read_provisioning_key() -> str:
     key = os.getenv("OPENROUTER_PROVISIONING_KEY")
     if not key:
         print("No provisioning key found. Provide OPENROUTER_PROVISIONING_KEY environment variable.")
-        exit(1)
+        sys.exit(1)
     else:
         return key
 
@@ -82,7 +84,7 @@ def read_mailgun_key() -> str:
     key = os.getenv("MAILGUN_KEY")
     if not key:
         print("No mailgun key found. Provide MAILGUN_KEY environment variable.")
-        exit(1)
+        sys.exit(1)
     else:
         return key
 
@@ -90,7 +92,7 @@ def read_workspace_id() -> str:
     id = os.getenv("OPENROUTER_WORKSPACE_ID")
     if not id:
         print("No workspace id found. Provide OPENROUTER_WORKSPACE_ID environment variable.")
-        exit(1)
+        sys.exit(1)
     else:
         return id
 

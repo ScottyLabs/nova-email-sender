@@ -1,5 +1,8 @@
 import os
+import sys
+
 import requests
+
 
 def disable_hash(hash: str, enable_instead: bool, provisioning_key: str) -> None:
     base_url = "https://openrouter.ai/api/v1/keys"
@@ -29,7 +32,7 @@ if __name__ == "__main__":
     provisioning_key = os.getenv("OPENROUTER_PROVISIONING_KEY")
     if not provisioning_key:
         print("No OpenRouter key found. Provide OPENROUTER_PROVISIONING_KEY environment variable.")
-        exit(1)
+        sys.exit(1)
 
     with open('key-hashes.txt') as f:
         hashes = f.read().splitlines()

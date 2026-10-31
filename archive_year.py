@@ -1,5 +1,6 @@
-from pathlib import Path
+import sys
 import zipfile
+from pathlib import Path
 
 from send2trash import send2trash
 
@@ -8,10 +9,10 @@ if __name__ == "__main__":
     if len(archive_name) == 0:
         raise ValueError(f'Invalid archive name "{archive_name}"')
     archive_name = f'{archive_name}.zip'
-    if Path(archive_name).is_file():
-        if input(f'"{archive_name}" already exists. Overwrite? (y|N): ').lower() != "y":
+    if Path(archive_name).is_file() \
+        and input(f'"{archive_name}" already exists. Overwrite? (y|N): ').lower() != "y":
             print("Archiving cancelled")
-            exit()
+            sys.exit()
 
     store_api_keys: bool = input("Archive (and optionally remove) .env file? (not recommended) (y|N): ").lower() == "y"
 
@@ -24,7 +25,7 @@ if __name__ == "__main__":
 
     if len(files_to_archive) == 0:
         print("No files to archive, exiting")
-        exit(1)
+        sys.exit(1)
 
     print(f"Discovered {len(files_to_archive)} files, archiving...")
 
